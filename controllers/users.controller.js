@@ -1,11 +1,11 @@
-const Joi = require("joi");
-const userService = require("../services/users.service");
-const { UserResponse } = require("../dto/userResponse");
+const Joi = require('joi');
+const userService = require('../services/users.service');
+const { UserResponse } = require('../dto/userResponse');
 const {
   UserAlreadyExistsError,
   AuthenticationError,
   NotFoundError,
-} = require("../dto/customErrors");
+} = require('../dto/customErrors');
 
 const registerSchema = Joi.object({
   email: Joi.string().email().required(),
@@ -47,7 +47,7 @@ const createUser = async (req, res, next) => {
     if (error instanceof UserAlreadyExistsError) {
       return res.status(error.status).json({ error: error.message });
     }
-    next(error); 
+    next(error);
   }
 };
 

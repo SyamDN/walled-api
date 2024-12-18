@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool;
 const pool = new Pool({
-  connectionString: process.nextTick.DB_URL
+  connectionString: process.env.DB_URL,
 });
 
 module.exports = pool;
