@@ -19,6 +19,7 @@ const findUserByEmail = async (email) => {
     ]);
     return result;
   } catch (error) {
+    console.log(error.message);
     throw new Error('Something went wrong test');
   }
 };
