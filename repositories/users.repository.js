@@ -14,13 +14,16 @@ const findUserById = async (id) => {
 
 const findUserByEmail = async (email) => {
   try {
-    const result = await pool.query('SELECT * FROM users where email = $1', [
-      email,
-    ]);
-    return result;
+    const result = await pool.query(
+      `SELECT users.*, wallets.id AS wallet_id
+       FROM users
+       LEFT JOIN wallets ON wallets.user_id = users.id
+       WHERE users.email = $1`,
+      [email]
+    );
+    return result.rows[0];
   } catch (error) {
-    console.log(error.message);
-    throw new Error('Something went wrong test');
+    throw new Error("Something went wrong");
   }
 };
 
